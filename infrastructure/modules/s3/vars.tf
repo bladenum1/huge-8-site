@@ -1,0 +1,10 @@
+# default variables
+variable region {}
+variable profile {}
+variable env {}
+variable color {}
+variable group {}
+variable application {}
+variable created_by {}
+variable canonical_id {}
+variable comment {}

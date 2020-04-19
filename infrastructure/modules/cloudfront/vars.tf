@@ -1,0 +1,11 @@
+# default variables
+variable region {}
+variable profile {}
+variable env {}
+variable color {}
+variable group {}
+variable application {}
+variable created_by {}
+variable comment {}
+variable bucket_id {}
+variable bucket_regional_domain_name {}
