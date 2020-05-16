@@ -13,14 +13,7 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import PeopleIcon from '@material-ui/icons/People';
 import CodeIcon from '@material-ui/icons/Code';
 import HomeIcon from '@material-ui/icons/Home';
-
-
 import useGlobal from "../../state";
-
-
-
-
-
 
 const useStyles = makeStyles({
   list: {
@@ -69,8 +62,8 @@ const Menu = () => {
       </List>
       <Divider />
       <List>
-        {['Logout'].map((txt, index) => (
-          <ListItem button key={txt}>
+        {['Admin'].map((txt, index) => (
+          <ListItem button key={txt} onClick={setPage(txt)}>
             <ListItemIcon>{<LockIcon />}</ListItemIcon>
             <ListItemText primary={txt} />
           </ListItem>

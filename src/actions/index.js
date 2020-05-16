@@ -1,6 +1,5 @@
 export const addToCounter = (state, amount) => {
   const counter = state.state.counter + amount;
-  console.log(counter)
   state.setState({ counter });
 };
 
@@ -22,4 +21,12 @@ export const messagesHandler = (state, messages) => {
 
 export const titleHandler = (state, title) => {
   state.setState({ title });
+};
+
+export const setInit = (state, init) => {
+  state.setState({ init });
+};
+
+export const setHomeContent = (state, homeContent) => {
+  state.setState({ homeContent });
 };

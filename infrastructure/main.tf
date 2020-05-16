@@ -37,3 +37,32 @@ module "s3" {
     comment         = "${var.comment}"
     canonical_id    = "${module.cloudfront.canonical_id}"
 }
+
+# Lambdas for handling secure requests
+module "lambda" {
+    source          = "./modules/lambda"
+    region          = "${var.region}"
+    profile         = "${var.profile}"
+    group           = "${var.group}"
+    application     = "${var.application}"
+    env             = "${var.env}"
+    color           = "${var.color}"
+    created_by      = "${var.created_by}"
+    comment         = "${var.comment}"
+    users           = "${var.users}"
+}
+
+# API for request processing
+module "api" {
+    source                        = "./modules/api"
+    region                        = "${var.region}"
+    profile                       = "${var.profile}"
+    group                         = "${var.group}"
+    application                   = "${var.application}"
+    env                           = "${var.env}"
+    color                         = "${var.color}"
+    created_by                    = "${var.created_by}"
+    comment                       = "${var.comment}"
+    lambda_secure_invoke_arn      = "${module.lambda.lambda_secure_invoke_arn}"
+    lambda_secure_name            = "${module.lambda.lambda_secure_name}"
+}

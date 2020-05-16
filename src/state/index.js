@@ -9,7 +9,9 @@ const initialState = {
   page: 'Home',
   dialog: false,
   messages: [],
-  title: ''
+  title: '',
+  init: {},
+  homeContent: '',
 };
 
 const useGlobal = useGlobalHook(React, initialState, actions);

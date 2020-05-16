@@ -10,7 +10,6 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import useGlobal from "../../state";
-import Config from "../../config";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,9 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = () => {
     const classes = useStyles();
-    const global = useGlobal();
-    const globalActions = global[1];
-
+    const [globalState, globalActions] = useGlobal();
     return (
         <div className={classes.root}>
             <AppBar position="static" style={{ background: 'black'}}>
@@ -44,16 +41,16 @@ const NavBar = () => {
                 <IconButton onClick={() => globalActions.setPage('Home')} className={classes.socials} color="inherit" aria-label="youtube">
                     <img alt ="twitch" height="32px" src={"./imgs/huge-8.png"}/>
                 </IconButton>
-                <IconButton onClick={() => window.open(`${Config.protocol}://${Config.instagram_url}`)} className={classes.socials} color="inherit" aria-label="instagram">
+                <IconButton onClick={() => window.open(`${globalState.init.protocol}://${globalState.init.instagram_url}`)} className={classes.socials} color="inherit" aria-label="instagram">
                     <InstagramIcon />
                 </IconButton>
-                <IconButton onClick={() => window.open(`${Config.protocol}://${Config.twitter_url}`)} className={classes.socials} align="right" color="inherit" aria-label="twitter">
+                <IconButton onClick={() => window.open(`${globalState.init.protocol}://${globalState.init.twitter_url}`)} className={classes.socials} align="right" color="inherit" aria-label="twitter">
                     <TwitterIcon />
                 </IconButton>
-                <IconButton onClick={() => window.open(`${Config.protocol}://${Config.youtube_url}`)} className={classes.socials} color="inherit" aria-label="youtube">
+                <IconButton onClick={() => window.open(`${globalState.init.protocol}://${globalState.init.youtube_url}`)} className={classes.socials} color="inherit" aria-label="youtube">
                     <YouTubeIcon />
                 </IconButton>
-                <IconButton onClick={() => window.open(`${Config.protocol}://${Config.twitch_url}`)} className={classes.socials} color="inherit" aria-label="youtube">
+                <IconButton onClick={() => window.open(`${globalState.init.protocol}://${globalState.init.twitch_url}`)} className={classes.socials} color="inherit" aria-label="youtube">
                     <img alt ="twitch" height="32px" src={"./icons/icons8-twitch-512.png"}/>
                 </IconButton>
                 </Toolbar>

@@ -9,12 +9,16 @@ VAR_FILE ?= vars/$(GROUP)-$(APPLICATION)-$(ENV)-$(COLOR)-$(REGION).tfvars
 
 workspace-select:
 	@AWS_PROFILE=$(PROFILE) terraform workspace new $(GROUP)-$(APPLICATION)-$(ENV)-$(COLOR)-$(REGION) || AWS_PROFILE=$(PROFILE) terraform workspace select $(GROUP)-$(APPLICATION)-$(ENV)-$(COLOR)-$(REGION)
-
+	
 init:
-	AWS_PROFILE=$(PROFILE) terraform init -var-file=$(VAR_FILE)
+	AWS_PROFILE=$(PROFILE) terraform init -var-file=$(VAR_FILE) -var-file=vars/secrets.tfvars
 
-apply: workspace-select
-	AWS_PROFILE=$(PROFILE) terraform apply -var-file=$(VAR_FILE)
+go-build:
+	go mod tidy && GOOS=linux GOARCH=amd64 go build -o modules/lambda/src-secure/main modules/lambda/src-secure/main.go
+	zip -j modules/lambda/src-secure/main.zip modules/lambda/src-secure/main
 
-destroy: workspace-select
-	AWS_PROFILE=$(PROFILE) terraform destroy -var-file=$(VAR_FILE)
+apply: workspace-select go-build
+	AWS_PROFILE=$(PROFILE) terraform apply -var-file=$(VAR_FILE) -var-file=vars/secrets.tfvars
+
+destroy: workspace-select go-build
+	AWS_PROFILE=$(PROFILE) terraform destroy -var-file=$(VAR_FILE) -var-file=vars/secrets.tfvars

@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Init from '../../init';
 import NavBar from '../NavBar';
 import Menu from '../Menu';
 import Dialog from '../Dialog';
@@ -40,6 +41,7 @@ const App = () => {
       <div className={classes.footer}>
         <Footer />
       </div>
+      <Init />
     </div>
   );
 }

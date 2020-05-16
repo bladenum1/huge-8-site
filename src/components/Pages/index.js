@@ -4,7 +4,9 @@ import About from './About';
 import Author from './Author';
 import Members from './Members';
 import Statistics from './Statistics';
+import Admin from './Admin';
 import Home from './Home';
+import Twitter from '../Twitter';
 
 import useGlobal from "../../state";
 
@@ -21,7 +23,9 @@ const Pages = () => {
             globalState.page === 'Members' ?
                 <Members /> :
             globalState.page === 'Statistics' ?
-                <Statistics /> : 
+                <Twitter /> : 
+            globalState.page === 'Admin' ?
+                <Admin /> : 
             globalState.page === 'Home' ?
                 <Home /> :
                 <div></div>

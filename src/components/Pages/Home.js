@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
+import useGlobal from "../../state";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +17,8 @@ const useStyles = makeStyles(theme => ({
 
 const Home = () => {
   const classes = useStyles();
-
+  const globals = useGlobal();
+  const globalState = globals[0];
   return (
     <div className={classes.root}>
       <div align="center" className={classes.img}>
@@ -24,7 +26,7 @@ const Home = () => {
       </div>
       <div align="center" className={classes.body}>
         <Typography variant="h4">
-          It's Happening
+          {globalState.homeContent}
         </Typography>
       </div>
     </div>

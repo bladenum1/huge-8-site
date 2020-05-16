@@ -8,7 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
-    "react": "^16.12.0",
+    "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.1",
@@ -20,7 +20,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build; aws s3 cp --recursive ./build s3://huge-8-site-nonprod-blue-us-east-1 --profile personal; cd build && aws cloudfront create-invalidation --distribution-id E3877DPZ7XEOE7 --path \"/*\" --profile personal"
+    "apply": "cd infrastructure && make apply",
+    "s3Sync": "aws s3 sync ./build s3://huge-8-site-nonprod-blue-us-east-1 --profile personal",
+    "cfInvalidate": "aws cloudfront create-invalidation --distribution-id E3877DPZ7XEOE7 --path \"/*\" --profile personal",
+    "deploy": "npm run build; npm run s3Sync; npm run cfInvalidate"
   },
   "eslintConfig": {
     "extends": "react-app"
